@@ -6,7 +6,8 @@ class Book extends Component{
     shelf: PropTypes.string.isRequired,
     handleChange: PropTypes.func.isRequired,
     title: PropTypes.string,
-    authors: PropTypes.array
+    authors: PropTypes.array,
+    imageLink: PropTypes.string.isRequired
   }
     render()
     {

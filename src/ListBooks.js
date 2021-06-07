@@ -12,9 +12,9 @@ class ListBooks extends Component {
               { this.props.books ? (
                   this.props.books.map((book) => 
                     (<Book key = {book.id} 
-                        imageLink = {book.imageLinks.thumbnail} 
+                        imageLink = {book.imageLinks ? book.imageLinks.thumbnail : ''} 
                         title = {book.title} 
-                        authors = {book.authors} 
+                        authors = {Array.isArray(book.authors) ? book.authors : []} 
                         shelf = {book.shelf}
                         id = {book.id}
                         handleChange = {this.props.handleChange}></Book>)

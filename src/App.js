@@ -12,12 +12,9 @@ class BooksApp extends React.Component {
   }
 
   // Update Books calls the api and update state accordingly
-  updateBooks(){
-    BooksAPI.getAll().then( (books) => {
-      this.setState( (prevState) => ({
-        books
-      }))
-    })
+  async updateBooks(){
+    const books = await BooksAPI.getAll();
+    this.setState({ books });
   }
 
   // We call the update books as soon as the product mounts
