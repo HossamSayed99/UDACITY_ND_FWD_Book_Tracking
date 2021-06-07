@@ -1,8 +1,13 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 class Book extends Component{
+  static propTypes = {
+    shelf: PropTypes.string.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    title: PropTypes.string,
+    authors: PropTypes.array
+  }
     render()
     {
         return (

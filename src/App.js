@@ -4,11 +4,14 @@ import './App.css'
 import { Link, Route } from "react-router-dom";
 import ListBooks from './ListBooks'
 import SearchBooks from './SearchBooks'
+
 class BooksApp extends React.Component {
+  // The state is the function retrieved by API
   state = {
     books : []
   }
 
+  // Update Books calls the api and update state accordingly
   updateBooks(){
     BooksAPI.getAll().then( (books) => {
       this.setState( (prevState) => ({
@@ -17,10 +20,13 @@ class BooksApp extends React.Component {
     })
   }
 
+  // We call the update books as soon as the product mounts
   componentDidMount(){
     this.updateBooks();
   }
 
+  // The function that handles changing of shelves of books
+  // It is passed down as prop to all children
   handleChange = (id, shelf, e) =>{
     console.log(id, shelf, e.target.value);
     BooksAPI.update({id: id}, e.target.value).then(res => {
@@ -32,7 +38,7 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route path = '/search' render = {({history}) => (
+        <Route path = '/search' render = { () => (
           <SearchBooks booksOnShelves = {this.state.books} handleChange = {this.handleChange}></SearchBooks>
         )}></Route>
         <Route exact path = '/' render = {() => (
@@ -40,6 +46,7 @@ class BooksApp extends React.Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
+            {/* Filtering each shelf to only show the books on this shelf */}
             <div className="list-books-content">
               <div>
                 <div className="bookshelf">
